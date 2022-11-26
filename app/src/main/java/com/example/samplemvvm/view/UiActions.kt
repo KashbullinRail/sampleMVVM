@@ -1,4 +1,4 @@
-package com.example.samplemvvm
+package com.example.samplemvvm.view
 
 interface UiActions {
 
