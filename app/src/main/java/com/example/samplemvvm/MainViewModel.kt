@@ -5,9 +5,12 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
+import com.example.samplemvvm.util.Event
 import com.example.samplemvvm.view.Navigator
 import com.example.samplemvvm.view.UiActions
 import com.example.samplemvvm.view.base.BaseScreen
+import com.example.samplemvvm.view.base.LiveEvent
+import com.example.samplemvvm.view.base.MutableLiveEvent
 
 const val ARG_SCREEN = "ARG_SCREEN"
 
@@ -27,10 +30,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application), N
         if (result != null){
             _result.value = Event(result)
         }
-        it.onBackPressed
+        it.onBackPressed()
     }
 
-    override fun toast(massege: String) {
+    override fun toast(message: String) {
         Toast.makeText(getApplication(), message, Toast.LENGTH_SHORT).show()
     }
 
@@ -39,7 +42,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application), N
     }
 
     fun launchFragment(activity: MainActivity, screen: BaseScreen, addToBackStack: Boolean = true){
-        val fragment = screen.javaClass.enclosingClass.newIntance() as Fragment
+        val fragment = screen.javaClass.enclosingClass.newInstance() as Fragment
         fragment.arguments = bundleOf(ARG_SCREEN to screen)
         val transaction = activity.supportFragmentManager.beginTransaction()
         if (addToBackStack) transaction.addToBackStack(null)

@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.samplemvvm.R
 import com.example.samplemvvm.databinding.FragmentCurrentColorBinding
+import com.example.samplemvvm.view.base.BaseFragment
 import com.example.samplemvvm.view.base.BaseScreen
+import com.example.samplemvvm.view.base.screenViewModel
 
 class CurrentColorFragment : BaseFragment() {
 
-    class screen : BaseScreen
+    class Screen : BaseScreen
 
     override val viewModel by screenViewModel<CurrentColorViewModel>()
 
